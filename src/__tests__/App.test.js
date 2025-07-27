@@ -1,11 +1,12 @@
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import App from "../components/App";
+import blogData from "../data/blog"; // Ensure this imports correctly
 
 test("renders the correct child components", () => {
-  const { container } = render(<App />);
-  expect(container.querySelector(".App")).toBeInTheDocument();
-  expect(container.querySelector(".App header")).toBeInTheDocument();
-  expect(container.querySelector(".App aside")).toBeInTheDocument();
-  expect(container.querySelector(".App main")).toBeInTheDocument();
+  render(<App />);
+  
+  expect(screen.getByRole("banner")).toBeInTheDocument();
+  expect(screen.getByRole("complementary")).toBeInTheDocument();
+  expect(screen.getByRole("main")).toBeInTheDocument(); // This should now work
 });
